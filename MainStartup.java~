@@ -1,0 +1,11 @@
+class MainStartup
+        {
+        public static void main(String[] args)      
+                {
+                System.out.println("Program Began.");
+                
+               ints
+                
+               System.out.println("Program Ended.");
+                }
+        }
