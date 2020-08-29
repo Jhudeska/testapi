@@ -1,43 +1,43 @@
+import java.util.ArrayList;
+
 class MainStartup
         {
-        public static void SayHi(String name)
-                {
-                System.out.println("Hi from " + name);
-                }
-        
-        public static int ReturnsFive()
-                {
-                int five = 5;
-                return five;
-                }
-                
-                public static boolean IsEven(int num)
-                        {
-                        if(num % 2 == 0) // Means the number is even.
-                                { 
-                                return true; 
-                                }
-                        
-                        return false;
-                        }
-        
         public static void main(String[] args)      
                 {
                 System.out.println("Program began.");
+
+                // Basic arrays. Don't use them. 
+                // You MUST initialize the array with it's values to use it. Lame.
+                int[] myArray = { 0, 1, 2 };
+                myArray[0] = 5;
+                System.out.println(myArray[0]);
                 
-                SayHi("srcmake");
+                        
+                // Arraylists. These are our basic arrays.
+                ArrayList<Integer> myList = new ArrayList<Integer>();
                 
-                int num = ReturnsFive(); // num = 5
-                
-                if(IsEven(num) == true)
+                // Add the numbers 0, 1, ..., 9 to the list.
+                for(int i = 0; i < 10; i++)
                         {
-                        System.out.println(num + " is even!");
-                        }
-                else
-                        {
-                        System.out.println(num + " is odd!");
+                        myList.add(i);
                         }
                 
+                // Access the numbers and print them out.
+                int n = myList.size();
+                for(int i = 0; i < n; i++)
+                        {
+                        int num = myList.get(i);
+                        System.out.print(num + " ");
+                        }
+                System.out.println();
+                        
+                // Other types.
+                ArrayList<Long> longList;
+                ArrayList<Double> doubleList;
+                ArrayList<Boolean> boolList;
+                ArrayList<Character> charList;
+                ArrayList<String> stringList;
+
                 System.out.println("Program ended.");
                 }
         }
