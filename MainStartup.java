@@ -4,16 +4,10 @@ class MainStartup
                 {
                 System.out.println("Program began.");
 
-                srcMathLibrary math = new srcMathLibrary();
-                math.PrintFaveNum();
-                math.SetFaveNum(200);
-                math.PrintFaveNum();
-                int addition = math.Add(2, 2);
-                System.out.println(addition);
+                Dog srcdog = new Dog();
+                srcdog.Speak();
+                srcdog.Eat();
                 
-                srcMathLibrary anothermath = new srcMathLibrary(-1);
-                anothermath.PrintFaveNum();
-
                 System.out.println("Program ended.");
                 }
         }
