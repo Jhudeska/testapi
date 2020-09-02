@@ -8,6 +8,9 @@ class MainStartup
                 srcdog.Speak();
                 srcdog.Eat();
                 
+                Cat srccat = new Cat();
+                srccat.Eat();
+                
                 System.out.println("Program ended.");
                 }
         }
