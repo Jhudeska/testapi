@@ -1,155 +1,59 @@
 // Copyright srcmake.com 2018.
-import java.util.*;
-
 class MainStartup
         {     
+        ////////////////////////////////////////////////////////////////////////
+        // This method is limited and can only accept Integer arrays.
+        // We'd have to overload it for Double, Long, String, Boolean, etc. arrays.
+        public static void PrintArraysBad(Integer[] array)
+                {
+                for(int element : array)
+                        {
+                        System.out.print(element + " ");
+                        }
+                System.out.println();
+                }
+        ////////////////////////////////////////////////////////////////////////
+
+        
+        ////////////////////////////////////////////////////////////////////////
         public static void main(String[] args)      
                 {
-                System.out.println("Program began.");
+                System.out.println("Program began.\n");
                 
-                //////////////////////////////////////
-                /* Stacks */
-                // First in - Last out 
-                // Reference: https://www.geeksforgeeks.org/stack-class-in-java/
+                /* Generic methods */
+                // We have a bunch of arrays.
+                Integer[] intArray = { 0, 2, 4, 6, 8, 10 };
+                Double[] doubleArray = { 1.5, 2.5, 3.5, 4.5, 5.5 };
+                Long[] longArray = { 100L, 200L, 300L, 400L, 500L };
+                Boolean[] boolArray = { true, true, false, true, false };
+                Character[] charArray = { 'a', 'b', 'c', 'd', 'e' };
+                String[] stringArray = { "Apple", "Book", "Candy", "srcmake" };
                 
-                System.out.println("\nStacks!");
-                Stack<Integer> stack = new Stack<Integer>();
-                stack.push(5);
-                stack.push(3);
-                stack.push(4);
-                stack.pop();
-                stack.push(2);
-                stack.push(1);
+                // If we want to print them, it makes sense to have a function to do it
+                // Since it would be cumbersome to have a bunch of for loops.
                 
-                int stacksize = stack.size();
-                System.out.println("There are " + stacksize + " elements in the stack.");
+                // But PrintArraysBad only accepts Integer arrays....
+                PrintArraysBad(intArray);
                 
-                while(stack.isEmpty() == false)
-                        {
-                        int top = stack.peek();     // The top item is...
-                        System.out.print(top + " ");
-                        stack.pop(); // Remove the top item from the stack.
-                        }
-                System.out.println();
-                //////////////////////////////////////
+                // We'll use the generic class's PrintArray method instead.
+                // (We don't need to instantiate an object since the methos is static.)
+                ArrayUtility.PrintArray(intArray);
+                ArrayUtility.PrintArray(doubleArray);
+                ArrayUtility.PrintArray(longArray);
+                ArrayUtility.PrintArray(boolArray);
+                ArrayUtility.PrintArray(charArray);
+                ArrayUtility.PrintArray(stringArray);
                 
-                
-                //////////////////////////////////////
-                /* Queues */
-                // First in - First Out
-                // A good reference: https://www.javatpoint.com/java-priorityqueue
-                // Another reference: https://www.geeksforgeeks.org/queue-interface-java/
-                
-                System.out.println("\nQueues!");
-                Queue<Integer> q = new LinkedList<Integer>();
-                q.add(4);
-                q.add(5);
-                q.add(2);
-                
-                int qsize = q.size();
-                System.out.println("There are " + qsize + " elements in the queue.");
-                
-                while(q.isEmpty() == false)
-                        {
-                        int top = q.peek(); // The front of the queue.
-                        System.out.print(top + " ");
-                        q.remove(); // Remove this front of the queue.
-                        }
-                System.out.println();
-                //////////////////////////////////////
-                
-                
-                //////////////////////////////////////
-                /* Priority Queues */
-                // A queue where order is preserved
-                // Reference: https://www.javatpoint.com/java-priorityqueue
-                
-                System.out.println("\nPriority Queues!");
-                
-                PriorityQueue<String> pq = new PriorityQueue<String>();
-                
-                pq.add("B");
-                pq.add("Z");
-                pq.add("A");
-                pq.add("F");
-                pq.add("M");
-                pq.add("X");
-                
-                int pqsize = pq.size();
-                System.out.println("There are " + pqsize + " elements in the priority queue.");
-                
-                while(pq.isEmpty() == false)
-                        {
-                        String top = pq.peek(); // The front of the queue.
-                        System.out.print(top + " ");
-                        pq.remove(); // Remove this front of the queue.
-                        }
                 System.out.println();
                 
-                //////////////////////////////////////
+                /* Generic Class */
+                GenericClass<Integer> intT = new GenericClass<Integer>();
+                intT.PrintT(5);
                 
-                
-                //////////////////////////////////////
-                /* Sets */
-                // A set won't add duplicate entries. 
-                // Reference: https://stackoverflow.com/questions/2490178/how-to-use-java-set
-                // Another Reference: https://www.geeksforgeeks.org/set-in-java/
-                
-                System.out.println("\nSets!");
-                
-                Set<String> set = new TreeSet<String>(); 
-                // You can also use "new HashSet" but don't. It won't be in order, then.
-                
-                set.add("src");
-                set.add("make");
-                set.add("java");
-                set.add("make");
-                set.add("src");
-                set.add("icecream");
-                
-                int setsize = set.size();
-                System.out.println("There are " + setsize + " elements in the set.");
-                
-                // A while loop doesn't make sense since removing from a set isn't ideal.
-                // We'll use a for loop that iterates through set items instead of by index.
-                for(String setitem : set)
-                        {
-                        System.out.print(" " + setitem + " |");
-                        }
-                System.out.println();
-                //////////////////////////////////////
-                
-                
-                //////////////////////////////////////
-                /* Hash Maps */
-                // A hash map stores key value pairs.
-                // Reference: https://www.javatpoint.com/java-hashmap
-                // Reference: https://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
-                
-                System.out.println("\nHash Maps!");
-                
-                HashMap<String, Integer> map = new HashMap<String, Integer>(); // Maps strings to ints.
-                map.put("srcmake", 100);
-                map.put("vegetables", 0);
-                map.put("chocolate", 50);
-                
-                // Get a value.
-                System.out.println("srcmake scores a value of " + map.get("srcmake"));
-                
-                // Go through all values. 
-                
-                for(Map.Entry<String, Integer> pair : map.entrySet())
-                        {
-                        String key = pair.getKey();
-                        int value = pair.getValue();
-                        System.out.println("Key: " + key + "\tValue: " + value);
-                        }
-                
-                
-                //////////////////////////////////////
-                
+                GenericClass<String> stringT = new GenericClass<String>();
+                stringT.PrintT("src make");
                 
                 System.out.println("\nProgram ended.");
-                
-                 }
                 }
+        ////////////////////////////////////////////////////////////////////////
+        }
